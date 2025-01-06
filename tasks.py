@@ -83,5 +83,11 @@ def python(ctx):
 @task
 def git(ctx, message):
     ctx.run(f"git add .", echo=True)
-    ctx.run(f"git commit -m '{message}'")
-    ctx.run(f"git push")
+    ctx.run(f"git commit -m '{message}'", echo=True)
+    ctx.run(f"git push", echo=True)
+
+@task
+def conda(ctx, name: str = "mlops_env"):
+    ctx.run(f"conda env create -f environment.yml", echo=True)
+    ctx.run(f"conda activate {name}", echo=True)
+    ctx.run(f"pip install -e .", echo=True)
