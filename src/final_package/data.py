@@ -1,9 +1,11 @@
 import torch
 import typer
+import warnings
 
+warnings.filterwarnings("ignore", message="You are using `torch.load` with `weights_only=False")
 
 def normalize(images: torch.Tensor) -> torch.Tensor:
-    """Normalize images."""
+    """Normalize ima<ges."""
     return (images - images.mean()) / images.std()
 
 

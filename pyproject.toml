@@ -28,3 +28,4 @@ omit = ["tests/*"]
 
 [project.scripts]
 train = "final_package.train:train"
+evaluate = "final_package.evaluate:app"
