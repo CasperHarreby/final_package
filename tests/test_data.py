@@ -1,5 +1,5 @@
 from torch.utils.data import Dataset
-from data import corrupt_mnist
+from src.final_package.data import corrupt_mnist
 
 def test_my_dataset():
     """Test the datasets returned by corrupt_mnist."""
