@@ -17,4 +17,4 @@ WORKDIR /
 RUN --mount=type=cache,target=~/pip/.cache pip install -r requirements.txt --no-cache-dir
 RUN pip install . --no-deps --no-cache-dir
 
-ENTRYPOINT ["python", "-u", "src/final_package/train.py"]
+ENTRYPOINT ["python", "-u", "src/final_package/evaluate.py"]
