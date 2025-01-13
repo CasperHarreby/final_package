@@ -3,25 +3,33 @@ import torch
 import typer
 from final_package.data import corrupt_mnist
 from final_package.model import MyAwesomeModel
+import logging
+import hydra
+from omegaconf import OmegaConf
+
+import os
+print("Current working directory:", os.getcwd())
+
+log = logging.getLogger(__name__)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
-
-def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
+@hydra.main(config_path="config", config_name="training_conf.yaml")
+def train(config) -> None:
     """Train a model on MNIST."""
-    print("Training day and night")
-    print(f"{lr=}, {batch_size=}, {epochs=}")
+    log.info(f"configuration:  \n {OmegaConf.to_yaml(config)}")
+    hparams = config
 
     model = MyAwesomeModel().to(DEVICE)
     train_set, _ = corrupt_mnist()
 
-    train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size)
+    train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=hparams["batch_size"])
 
     loss_fn = torch.nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    optimizer = torch.optim.Adam(model.parameters(), lr=hparams["learning_rate"])
 
     statistics = {"train_loss": [], "train_accuracy": []}
-    for epoch in range(epochs):
+    for epoch in range(hparams["epochs"]):
         model.train()
         for i, (img, target) in enumerate(train_dataloader):
             img, target = img.to(DEVICE), target.to(DEVICE)
@@ -49,4 +57,4 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
 
 
 if __name__ == "__main__":
-    typer.run(train)
+    train()

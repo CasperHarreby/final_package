@@ -1,0 +1,31 @@
+{
+  "os":  "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.31",
+  "python":  "CPython 3.11.11",
+  "startedAt":  "2025-01-12T19:52:12.702938Z",
+  "program":  "/home/casper/02476_MLOps/final_package/src/final_package/train_wandb.py",
+  "codePath":  "src/final_package/train_wandb.py",
+  "git":  {
+    "remote":  "https://github.com/CasperHarreby/final_package.git",
+    "commit":  "5840f5e4e36a058b1800380e5f157d6fc04f4209"
+  },
+  "email":  "casperharreby99@gmail.com",
+  "root":  "/home/casper/02476_MLOps/final_package",
+  "host":  "Caspers-Laptop",
+  "executable":  "/home/casper/anaconda3/envs/mlops_env/bin/python",
+  "codePathLocal":  "src/final_package/train_wandb.py",
+  "cpu_count":  4,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "1081101176832",
+      "used":  "46271401984"
+    }
+  },
+  "memory":  {
+    "total":  "8214568960"
+  },
+  "cpu":  {
+    "count":  4,
+    "countLogical":  8
+  }
+}
